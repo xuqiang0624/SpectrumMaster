@@ -63,10 +63,10 @@ git config --global --list            # 检查
 - 想把首次提交的作者也改成真实身份：`git commit --amend --reset-author --no-edit`。
 
 ## D1 验收
-- [ ] `cmake` 配置与编译通过，窗口能显示
-- [ ] 自检输出 `Qt runtime: 6.11.2`
-- [ ] Git 身份已配置，`git log` 里能看到第一次提交
-- [ ] 能说清：为什么 `Device` 的析构要 virtual、AUTOMOC 解决什么问题
+- [x] `cmake` 配置与编译通过，窗口能显示（命令行 Release + Qt Creator Debug 均通过）
+- [x] 自检输出 `Qt runtime: 6.11.2`
+- [x] Git 身份已配置，`git log` 里能看到第一次提交
+- [ ] 能不看资料说清：为什么 `Device` 的析构要 virtual、AUTOMOC 解决什么（口径见 `docs/D1_验收记录.md`，复述一遍后自己勾上）问题
 
 ## 附录：终端里的中文用户名与默认目录（可选）
 终端提示符 `未来可期 @//laptop-1n0ae48p/ UCRT64 ~` 拆开看：
