@@ -40,12 +40,16 @@ build\SpectrumMaster.exe
 （保留「把 git 加入 PATH」的默认选项），装完**重新打开**命令行敲 `git --version` 验证。
 仓库和首次提交都在 `.git` 目录里，装完照样能 `git log` 看到，不用重做。
 
-装好后要上传到 GitHub：网页上 New repository 建**空**仓库（不要勾 README/.gitignore），然后：
+## 推送到 GitHub
+远程仓库已关联好：`origin -> https://github.com/xuqiang0624/SpectrumMaster.git`。
+以后提交完代码，双击 `scripts/push.bat`，或在命令行执行：
 ```bash
-git remote add origin https://github.com/你的账号/SpectrumMaster.git
-git push -u origin main
+git push
 ```
-首次 push 会弹浏览器让你登录 GitHub（Git for Windows 自带凭据管理器），不需要手动造令牌。
+**首次**推送会弹出浏览器让你登录 GitHub 授权（Git for Windows 自带凭据管理器），授权后自动完成，
+不需要手动造令牌；之后直接 `git push` 即可。若弹窗没出现，可在 GitHub →
+Settings → Developer settings → Personal access tokens 生成一个勾 `repo` 的 token，
+推送时用户名填 GitHub 账号、密码粘贴 token。
 
 ## Git 身份（第一次 commit 前必做）
 全局身份要用**你自己的**姓名和邮箱（建议与 Gitee/GitHub 账号邮箱一致），
