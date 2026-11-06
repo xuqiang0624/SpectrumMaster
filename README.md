@@ -33,6 +33,20 @@ build\SpectrumMaster.exe
 ```
 自检时若出现 `Cannot find font directory` 或 `propagateSizeHints` 提示，是 offscreen 虚拟平台的正常信息，双击正常运行不会出现。
 
+## 前置：安装 Git for Windows
+本机系统**尚未安装 Git**（PowerShell / cmd 里 `git` 不可用），只有 WorkBuddy 内置终端带便携版，
+它能帮我建仓库、做首次提交，但你在自己的命令行里用不了。
+先到 https://git-scm.com/download/win 下载 **Git for Windows 64-bit**，一路默认安装
+（保留「把 git 加入 PATH」的默认选项），装完**重新打开**命令行敲 `git --version` 验证。
+仓库和首次提交都在 `.git` 目录里，装完照样能 `git log` 看到，不用重做。
+
+装好后要上传到 GitHub：网页上 New repository 建**空**仓库（不要勾 README/.gitignore），然后：
+```bash
+git remote add origin https://github.com/你的账号/SpectrumMaster.git
+git push -u origin main
+```
+首次 push 会弹浏览器让你登录 GitHub（Git for Windows 自带凭据管理器），不需要手动造令牌。
+
 ## Git 身份（第一次 commit 前必做）
 全局身份要用**你自己的**姓名和邮箱（建议与 Gitee/GitHub 账号邮箱一致），
 先改 `scripts/setup_git.bat` 里的 `YOUR_NAME` / `YOUR_EMAIL` 再双击，或手动执行：
