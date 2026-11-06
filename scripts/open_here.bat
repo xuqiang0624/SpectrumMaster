@@ -21,4 +21,6 @@ if not exist "%GB%" (
 )
 
 echo 正在打开工程终端: %PROJ%
-start "" /D "%PROJ%" "%GB%" --cd="%PROJ%"
+REM /D 让新窗口的工作目录直接就是工程目录；Git Bash 的 /etc/profile 不会强制跳回 ~
+start "" /D "%PROJ%" "%GB%"
+echo 若窗口里仍显示 ~，手动敲一次: cd /d/Qt/qt28/SpectrumMaster
