@@ -33,12 +33,11 @@ build\SpectrumMaster.exe
 ```
 自检时若出现 `Cannot find font directory` 或 `propagateSizeHints` 提示，是 offscreen 虚拟平台的正常信息，双击正常运行不会出现。
 
-## 前置：安装 Git for Windows
-本机系统**尚未安装 Git**（PowerShell / cmd 里 `git` 不可用），只有 WorkBuddy 内置终端带便携版，
-它能帮我建仓库、做首次提交，但你在自己的命令行里用不了。
-先到 https://git-scm.com/download/win 下载 **Git for Windows 64-bit**，一路默认安装
-（保留「把 git 加入 PATH」的默认选项），装完**重新打开**命令行敲 `git --version` 验证。
-仓库和首次提交都在 `.git` 目录里，装完照样能 `git log` 看到，不用重做。
+## 环境备忘：Git
+Git for Windows 已装在 `D:\Git`（2.56.0），全局身份已配置，GitHub 首次推送也已授权完成。
+换电脑重装时：到 https://git-scm.com/download/win 下载 **Git for Windows 64-bit**，一路默认安装
+（保留「把 git 加入 PATH」），装完**重新打开**命令行敲 `git --version` 验证；
+仓库和提交历史都在 `.git` 目录里，与用哪个 Git 无关，不用重做。
 
 ## 推送到 GitHub
 远程仓库已关联好：`origin -> https://github.com/xuqiang0624/SpectrumMaster.git`。
@@ -46,8 +45,8 @@ build\SpectrumMaster.exe
 ```bash
 git push
 ```
-**首次**推送会弹出浏览器让你登录 GitHub 授权（Git for Windows 自带凭据管理器），授权后自动完成，
-不需要手动造令牌；之后直接 `git push` 即可。若弹窗没出现，可在 GitHub →
+首次推送已完成（浏览器授权 + 凭据已缓存），以后直接 `git push` 即可，不用再登录，
+也不需要手动造令牌。换新电脑或凭据失效时若弹窗没出现，可在 GitHub →
 Settings → Developer settings → Personal access tokens 生成一个勾 `repo` 的 token，
 推送时用户名填 GitHub 账号、密码粘贴 token。
 
@@ -68,3 +67,29 @@ git config --global --list            # 检查
 - [ ] 自检输出 `Qt runtime: 6.11.2`
 - [ ] Git 身份已配置，`git log` 里能看到第一次提交
 - [ ] 能说清：为什么 `Device` 的析构要 virtual、AUTOMOC 解决什么问题
+
+## 附录：终端里的中文用户名与默认目录（可选）
+终端提示符 `未来可期 @//laptop-1n0ae48p/ UCRT64 ~` 拆开看：
+`未来可期` 是 **Windows 账户名**，`@//laptop-1n0ae48p/` 是主机名，`UCRT64` 是终端环境，`~` 是当前在家目录。
+
+- **不需要改 Windows 账户名**。工程在 `D:\Qt\qt28\SpectrumMaster`（纯英文路径），
+  Qt / CMake / Git 编译都不受中文账户名影响；要避开的只是「把工程放桌面」。
+  直接重命名用户文件夹，会让 PATH 里指向 `C:\Users\未来可期` 的项、`.gitconfig`、
+  Qt Creator / VS Code 等大量绝对路径配置失效，风险远大于收益。
+- **别改 `HOME` 环境变量**。Git 全局身份存在 `C:\Users\未来可期\.gitconfig`，
+  改了 HOME 就找不到它，`git commit` 会重新报 "Please tell me who you are"。
+- **只想让显示名变英文**（纯外观，最安全）：
+  ```bash
+  cd /d/Qt/qt28/SpectrumMaster
+  bash scripts/setup_prompt.sh          # 别名默认 xuqiang，也可跟一个自定义别名
+  source ~/.bashrc                      # 立即生效，或重开终端窗口
+  ```
+  脚本只往 `~/.bashrc` 追加一段 PS1：会先备份为 `~/.bashrc.qt28.bak`，
+  重复执行不会叠加，删掉 `BEGIN/END` 两个标记之间的内容即可还原。
+  它不改账户名、不改 HOME、不碰 `.gitconfig`。
+- **让终端一打开就在工程目录**：双击 `scripts/open_here.bat`，
+  以后不必每次先 `cd /d/Qt/qt28/SpectrumMaster`。当然手动 `cd` 永远有效：
+  ```bash
+  cd /d/Qt/qt28/SpectrumMaster   # UCRT64 / Git Bash
+  cd /d D:\Qt\qt28\SpectrumMaster  # cmd / PowerShell
+  ```
