@@ -1,7 +1,7 @@
 # SpectrumMaster · D1 工程骨架
 
 > Qt 6.11.2 + MinGW 13.1 + CMake/Ninja。这个目录是**工程文件夹**（不是单个文件），
-> 28 天的所有练习都往这里长，不要另建零散 demo。
+> 后续所有功能都在这个工程里迭代，不另建零散 demo。
 
 ## 已就绪的内容
 - `CMakeLists.txt`：find_package 验证 Widgets / Network / SerialPort / Charts / PrintSupport 五个模块，AUTOMOC 已开
@@ -62,21 +62,21 @@ git config --global --list            # 检查
 - 本仓库的首次提交是用临时身份 `-c` 参数生成的，**config 里没有留下任何覆盖**，你配好全局后，之后的提交自动使用真实身份。
 - 想把首次提交的作者也改成真实身份：`git commit --amend --reset-author --no-edit`。
 
-## D1 验收
+## D1 自检
 - [x] `cmake` 配置与编译通过，窗口能显示（命令行 Release + Qt Creator Debug 均通过）
 - [x] 自检输出 `Qt runtime: 6.11.2`
 - [x] Git 身份已配置，`git log` 里能看到第一次提交
-- [ ] 能不看资料说清：为什么 `Device` 的析构要 virtual、AUTOMOC 解决什么（口径见 `docs/D1_验收记录.md`，复述一遍后自己勾上）问题
+- [ ] 能解释清楚：为什么 `Device` 的析构要 virtual、AUTOMOC 解决什么（说明见 `docs/D1_验收记录.md`）
 
 ## 附录：终端里的中文用户名与默认目录（可选）
-终端提示符 `未来可期 @//laptop-1n0ae48p/ UCRT64 ~` 拆开看：
-`未来可期` 是 **Windows 账户名**，`@//laptop-1n0ae48p/` 是主机名，`UCRT64` 是终端环境，`~` 是当前在家目录。
+终端提示符 `用户名 @主机名 UCRT64 ~` 拆开看：
+第一段是 **Windows 账户名**，第二段是主机名，`UCRT64` 是终端环境，`~` 是当前在家目录。
 
 - **不需要改 Windows 账户名**。工程在 `D:\Qt\qt28\SpectrumMaster`（纯英文路径），
   Qt / CMake / Git 编译都不受中文账户名影响；要避开的只是「把工程放桌面」。
-  直接重命名用户文件夹，会让 PATH 里指向 `C:\Users\未来可期` 的项、`.gitconfig`、
+  直接重命名用户文件夹，会让 PATH 里指向 `C:\Users\<用户名>` 的项、`.gitconfig`、
   Qt Creator / VS Code 等大量绝对路径配置失效，风险远大于收益。
-- **别改 `HOME` 环境变量**。Git 全局身份存在 `C:\Users\未来可期\.gitconfig`，
+- **别改 `HOME` 环境变量**。Git 全局身份存在 `~/.gitconfig`，
   改了 HOME 就找不到它，`git commit` 会重新报 "Please tell me who you are"。
 - **只想让显示名变英文**（纯外观，最安全）：
   ```bash
